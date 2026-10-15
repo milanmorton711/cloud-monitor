@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.cloudmonitor.model.CloudEvent;
@@ -33,6 +34,7 @@ public class EventSimulator {
         this.eventService = eventService;
     }
 
+    @Scheduled(fixedRate = 30000)
     public void generateEvents() {
 
         int eventCount = 5 + random.nextInt(6);
@@ -54,7 +56,6 @@ public class EventSimulator {
             );
         }
 
-        // Occasionally simulate a brute-force login attack.
         if (random.nextInt(100) < 30) {
 
             for (int i = 0; i < 5; i++) {
@@ -83,8 +84,6 @@ public class EventSimulator {
         event.setAction(action);
         event.setSourceIp(generateIp());
         event.setRegion(randomRegion());
-
-        // Actual current timestamp
         event.setTimestamp(Instant.now());
 
         eventService.processEvent(event);
