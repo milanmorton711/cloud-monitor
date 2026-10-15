@@ -60,7 +60,7 @@ body {
   background: #7c3aed;
 }
 
-.dashboard > * {
+.dashboard > :not(.bg-glow) {
   position: relative;
   z-index: 1;
 }
@@ -208,6 +208,15 @@ h1 {
 .toggle-button.is-live {
   border-color: rgba(52, 211, 153, 0.5);
   color: var(--ok);
+}
+
+.simulate-button {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: var(--accent);
+}
+.simulate-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }
 
 .connection-error {
